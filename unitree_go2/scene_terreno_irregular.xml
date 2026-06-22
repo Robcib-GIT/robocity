@@ -1,0 +1,138 @@
+<mujoco model="go2 scene">
+  <include file="go2.xml"/>
+
+  <!-- Configuración general para aceptar ángulos en radianes -->
+  <compiler angle="radian"/>
+
+  <statistic center="0 0 0.1" extent="0.8"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="-130" elevation="-20"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    <material name="wall_mat" rgba="0.9 0.9 0.9 1" reflectance="0.0"/>
+    
+    <!-- NUEVO: Material para el terreno irregular (Naranja mate) -->
+    <material name="obstacle_mat" rgba="0.8 0.4 0.1 1" reflectance="0.05"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+
+    <!-- ========================================== -->
+    <!-- PAREDES EXTERIORES (Perímetro 10x10)       -->
+    <!-- ========================================== -->
+    <geom name="wall_south" type="box" pos="5.0 0.0 0.5" size="5.1 0.1 0.5" material="wall_mat"/>
+    <geom name="wall_north" type="box" pos="5.0 10.0 0.5" size="5.1 0.1 0.5" material="wall_mat"/>
+    <geom name="wall_west"  type="box" pos="0.0 5.0 0.5" size="0.1 5.0 0.5" material="wall_mat"/>
+    <geom name="wall_east"  type="box" pos="10.0 5.0 0.5" size="0.1 5.0 0.5" material="wall_mat"/>
+
+    <!-- PAREDES INTERIORES DEL LABERINTO -->
+    <geom name="h1_a" type="box" pos="2.25 1.5 0.5" size="2.25 0.1 0.5" material="wall_mat"/>
+    <geom name="h1_b" type="box" pos="7.5 1.5 0.5"  size="1.0 0.1 0.5"  material="wall_mat"/>
+    <geom name="h2_a" type="box" pos="3.5 3.0 0.5"  size="2.0 0.1 0.5" material="wall_mat"/>
+    <geom name="h2_b" type="box" pos="8.5 3.0 0.5"  size="1.5 0.1 0.5" material="wall_mat"/>
+    <geom name="h3_a" type="box" pos="1.5 4.5 0.5"  size="1.5 0.1 0.5" material="wall_mat"/>
+    <geom name="h3_b" type="box" pos="7.25 4.5 0.5" size="2.75 0.1 0.5" material="wall_mat"/>
+    <geom name="h4_a" type="box" pos="4.25 6.0 0.5" size="2.75 0.1 0.5" material="wall_mat"/>
+    <geom name="h5_a" type="box" pos="2.25 7.5 0.5" size="2.25 0.1 0.5" material="wall_mat"/>
+    <geom name="h5_b" type="box" pos="8.0 7.5 0.5"  size="2.0 0.1 0.5" material="wall_mat"/>
+    <geom name="h6_a" type="box" pos="5.0 9.0 0.5"  size="3.5 0.1 0.5" material="wall_mat"/>
+
+
+
+    <!-- ========================================== -->
+    <!--     ZONAS DE TERRENO IRREGULAR (NUEVO)     -->
+    <!-- ========================================== -->
+
+    <!-- ZONA 1: LAS GRADAS (Escaleras simétricas) -->
+    <!-- Ubicadas en el pasillo inferior (Y=0.75) -->
+    <geom type="box" pos="4.0 0.75 0.015" size="0.3 0.6 0.015" material="obstacle_mat"/>
+    <geom type="box" pos="4.6 0.75 0.03"  size="0.3 0.6 0.03"  material="obstacle_mat"/>
+    <geom type="box" pos="5.2 0.75 0.045" size="0.3 0.6 0.045" material="obstacle_mat"/>
+    <geom type="box" pos="5.8 0.75 0.03"  size="0.3 0.6 0.03"  material="obstacle_mat"/>
+    <geom type="box" pos="6.4 0.75 0.015" size="0.3 0.6 0.015" material="obstacle_mat"/>
+
+    <!-- Ubicadas en el pasillo inferior-->
+    <geom type="box" pos="5.0 5.3 0.015" size="0.3 0.6 0.015" material="obstacle_mat"/>
+    <geom type="box" pos="5.6 5.3 0.03"  size="0.3 0.6 0.03"  material="obstacle_mat"/>
+    <geom type="box" pos="6.2 5.3 0.045" size="0.3 0.6 0.045" material="obstacle_mat"/>
+    <geom type="box" pos="6.8 5.3 0.03"  size="0.3 0.6 0.03"  material="obstacle_mat"/>
+    <geom type="box" pos="7.4 5.3 0.015" size="0.3 0.6 0.015" material="obstacle_mat"/>
+    
+        <!-- Ubicadas en el pasillo inferior-->
+    <geom type="box" pos="1.0 5.3 0.015" size="0.3 0.6 0.015" material="obstacle_mat"/>
+    <geom type="box" pos="1.6 5.3 0.03"  size="0.3 0.6 0.03"  material="obstacle_mat"/>
+    <geom type="box" pos="2.2 5.3 0.045" size="0.3 0.6 0.045" material="obstacle_mat"/>
+    <geom type="box" pos="2.8 5.3 0.03"  size="0.3 0.6 0.03"  material="obstacle_mat"/>
+    <geom type="box" pos="3.4 5.3 0.015" size="0.3 0.6 0.015" material="obstacle_mat"/>
+
+
+    <!-- ZONA 4: TOPES DE VELOCIDAD (Cilindros en el suelo) -->
+    <geom type="cylinder" pos="5.2 7.5 0.02" size="0.04 1.2" euler="0 0 0" material="obstacle_mat"/>
+    <geom type="cylinder" pos="6.3 3.0 0.02" size="0.04 1.2" euler="0 0 0" material="obstacle_mat"/>
+    <geom type="cylinder" pos="0.9 3.0 0.02" size="0.04 1.2" euler="0 0 0" material="obstacle_mat"/>
+    
+<geom type="cylinder" pos="5.4 1.8 0.03" size="0.03 1.2" euler="1.5708 1.5708 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.0 1.9 0.03" size="0.03 1.2" euler="1.5708 1.5708 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.8 2.0 0.03" size="0.03 1.2" euler="1.5708 1.5408 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.1 2.1 0.03" size="0.03 1.2" euler="1.5708 1.5708 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.8 2.2 0.03" size="0.03 1.2" euler="1.5708 1.5408 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.3 2.3 0.03" size="0.03 1.2" euler="1.5708 1.5308 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.2 2.4 0.03" size="0.03 1.2" euler="1.5708 1.5208 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.9 2.5 0.03" size="0.03 1.2" euler="1.5708 1.5708 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.5 2.6 0.03" size="0.03 1.2" euler="1.5708 1.5508 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.1 2.7 0.03" size="0.03 1.2" euler="1.5708 1.5108 0" material="obstacle_mat"/>
+<geom type="cylinder" pos="5.4 2.8 0.03" size="0.03 1.2" euler="1.5708 1.5708 0" material="obstacle_mat"/>
+
+    <!-- ZONA 3: EL PEDREGAL (Geometrías caóticas y picos) -->
+    <!-- Ubicado en el centro-derecha (X=6.0 a 8.0, Y=3.5 a 4.0) -->
+    <!-- Cajas rotadas en varios ejes para formar triángulos y desniveles aleatorios -->
+    <geom type="box" pos="9.2 8.75 0.02" size="0.05 0.05 0.05" euler="0.2 0.3 0.5" material="obstacle_mat"/>
+    <geom type="box" pos="9.5 8.60 0.03" size="0.05 0.05 0.05" euler="-0.1 0.4 -0.2" material="obstacle_mat"/>
+    <geom type="box" pos="9.1 8.90 0.02" size="0.05 0.05 0.05" euler="0.4 0.0 0.1" material="obstacle_mat"/>
+    <geom type="box" pos="9.0 8.75 0.04" size="0.05 0.05 0.05" euler="-0.3 -0.2 0.8" material="obstacle_mat"/>
+    <geom type="box" pos="9.4 8.80 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    
+    <geom type="box" pos="9.1 9.20 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.2 9.10 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.3 9.60 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.4 8.70 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.5 9.30 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.4 8.80 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.3 8.50 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.2 9.20 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.1 9.10 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="9.0 9.0 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    
+        <!-- ZONA 3: EL PEDREGAL (Geometrías caóticas y picos) -->
+    <!-- Ubicado en el centro-derecha (X=6.0 a 8.0, Y=3.5 a 4.0) -->
+    <!-- Cajas rotadas en varios ejes para formar triángulos y desniveles aleatorios -->
+    <geom type="box" pos="0.9 8.75 0.02" size="0.05 0.05 0.05" euler="0.2 0.3 0.5" material="obstacle_mat"/>
+    <geom type="box" pos="0.5 8.60 0.03" size="0.05 0.05 0.05" euler="-0.1 0.4 -0.2" material="obstacle_mat"/>
+    <geom type="box" pos="0.6 8.90 0.02" size="0.05 0.05 0.05" euler="0.4 0.0 0.1" material="obstacle_mat"/>
+    <geom type="box" pos="0.7 8.75 0.04" size="0.05 0.05 0.05" euler="-0.3 -0.2 0.8" material="obstacle_mat"/>
+    <geom type="box" pos="0.4 8.80 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    
+    <geom type="box" pos="0.5 9.20 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.7 9.10 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.8 9.60 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.4 8.70 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.5 9.30 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.9 8.80 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.8 8.50 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.7 9.20 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.6 9.10 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    <geom type="box" pos="0.5 9.0 0.02" size="0.05 0.05 0.05" euler="0.1 0.5 0.0" material="obstacle_mat"/>
+    
+    
+  </worldbody>
+</mujoco>

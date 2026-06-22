@@ -1,0 +1,77 @@
+
+**************************************
+***** LANZAMIENTO DE CODIGOS BASE *********
+**************************************
+// copiar la carpeta scripts_cuadrupedos_muar
+// reemplazar la carpeta "unitree_go2" dentro de mujoco_menagerie
+- Lanzamiento de entorno:
+
+1 ****
+cd ~/robocity_cuadruped_robot/base && python3 inicio_ros.py 
+
+2 ****
+cd ~/robocity_cuadruped_robot/base && python3 locomotion_node.py
+
+3 **** Teleop
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+4 **** Autonomo
+cd ~/robocity_cuadruped_robot/base && python3 navigation.py
+
+**************************************
+***** POSIBLES ERRORES DE ENV ********
+**************************************
+
+********** Si da error en el .bashrc
+source $CONDA_PREFIX/setup.bash
+
+
+unset PYTHONPATH
+unset AMENT_PREFIX_PATH
+unset CMAKE_PREFIX_PATH
+unset ROS_PACKAGE_PATH
+unset LD_LIBRARY_PATH
+
+
+**************************************
+***** LANZAMIENTO DE CODIGOS RL *********
+**************************************
+
+* 1. Lanzamiento de entorno:
+cd ~/robocity_cuadruped_robot/scripts/caso_1_entorno && python3 inicio.py 
+
+* 2. Entrenamiento 1:
+cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && python3 entrenamiento.py
+
+* 2.1 Evolucion del entrenamiento:
+cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && tensorboard --logdir ./logs/
+
+* 2.2 Inferencia con modelo de 1 Millón de épocas
+cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && python3 cae_adelante.py
+
+* 2.3 Inferencia modelo vibracion:
+cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/vibracion && python3 vibracion.py
+
+* 3. Movilidad (Terrenos y Refinamiento)
+cd ~/robocity_cuadruped_robot/scripts/caso_3_movilidad && python3 inferencia.py
+## probar a cambiar la escena "scene_irregular.xml"
+## probar a cambiar el tipo de robot por el "anybotics_anymal_c"
+
+* 4. Robustez (GCPM + Residual)
+cd ~/robocity_cuadruped_robot/scripts/caso_4_robustez && python3 train_inference.py
+
+* 4.1 Continuar con un entrenamiento
+cd ~/robocity_cuadruped_robot/scripts/caso_4_robustez && python3 continuar_entrenamiento.py
+
+
+
+
+
+
+
+
+
+
+
+
+

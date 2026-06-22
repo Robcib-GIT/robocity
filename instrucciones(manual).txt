@@ -1,0 +1,121 @@
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3
+
+source $HOME/miniconda3/bin/activate
+
+conda install mamba -n base -c conda-forge -y
+
+mamba create -n robocity_cuadruped_robot python=3.10.12 -y
+
+conda activate robocity_cuadruped_robot
+
+conda config --env --add channels conda-forge
+conda config --env --add channels robostack-staging
+conda config --env --set channel_priority strict
+
+mamba install \
+ros-humble-ros-base \
+ros-humble-sensor-msgs \
+ros-humble-geometry-msgs \
+ros-humble-tf2-ros \
+ros-humble-rviz2 \
+ros-humble-teleop-twist-keyboard \
+typeguard \
+-y
+
+
+pip install \
+mujoco==3.6.0 \
+numpy==2.2.6 \
+"stable-baselines3[extra]" \
+"gymnasium[mujoco]" \
+tensorboard \
+gTTS \
+moviepy \
+imageio \
+mediapy
+
+mkdir -p ~/robocity_cuadruped_robot
+
+cd ~/robocity_cuadruped_robot
+
+git clone https://github.com/google-deepmind/mujoco_menagerie.git
+
+
+**************************************
+***** LANZAMIENTO DE CODIGOS BASE *********
+**************************************
+// copiar la carpeta scripts_cuadrupedos_muar
+// reemplazar la carpeta "unitree_go2" dentro de mujoco_menagerie
+- Lanzamiento de entorno:
+
+1 ****
+cd ~/robocity_cuadruped_robot/base && python3 inicio_ros.py 
+
+2 ****
+cd ~/robocity_cuadruped_robot/base && python3 locomotion_node.py
+
+3 **** Teleop
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+4 **** Autonomo
+cd ~/robocity_cuadruped_robot/base && python3 navigation.py
+
+**************************************
+***** POSIBLES ERRORES DE ENV ********
+**************************************
+
+********** Si da error en el .bashrc
+source $CONDA_PREFIX/setup.bash
+
+
+unset PYTHONPATH
+unset AMENT_PREFIX_PATH
+unset CMAKE_PREFIX_PATH
+unset ROS_PACKAGE_PATH
+unset LD_LIBRARY_PATH
+
+
+**************************************
+***** LANZAMIENTO DE CODIGOS RL *********
+**************************************
+
+* 1. Lanzamiento de entorno:
+cd ~/robocity_cuadruped_robot/scripts/caso_1_entorno && python3 inicio.py 
+
+* 2. Entrenamiento 1:
+cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && python3 entrenamiento.py
+
+* 2.1 Evolucion del entrenamiento:
+cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && tensorboard --logdir ./logs/
+
+* 2.2 Inferencia con modelo de 1 Millón de épocas
+cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && python3 cae_adelante.py
+
+* 2.3 Inferencia modelo vibracion:
+cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/vibracion && python3 vibracion.py
+
+* 3. Movilidad (Terrenos y Refinamiento)
+cd ~/robocity_cuadruped_robot/scripts/caso_3_movilidad && python3 inferencia.py
+## probar a cambiar la escena "scene_irregular.xml"
+## probar a cambiar el tipo de robot por el "anybotics_anymal_c"
+
+* 4. Robustez (GCPM + Residual)
+cd ~/robocity_cuadruped_robot/scripts/caso_4_robustez && python3 train_inference.py
+
+* 4.1 Continuar con un entrenamiento
+cd ~/robocity_cuadruped_robot/scripts/caso_4_robustez && python3 continuar_entrenamiento.py
+
+
+
+
+
+
+
+
+
+
+
+
+
