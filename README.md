@@ -60,11 +60,11 @@ Next, open different terminal tabs (activating the environment in each one) to l
 
 * **1. Environment Launch:**
 
-    cd ~/robocity_cuadruped_robot/robocity/base && python3 inicio_ros.py 
+    cd ~/robocity_cuadruped_robot/base && python3 inicio_ros.py 
 
 * **2. Locomotion Node:**
 
-    cd ~/robocity_cuadruped_robot/robocity/base && python3 locomotion_node.py
+    cd ~/robocity_cuadruped_robot/base && python3 locomotion_node.py
 
 * **3. Teleoperation (Manual Control):**
 
@@ -72,7 +72,7 @@ Next, open different terminal tabs (activating the environment in each one) to l
 
 * **4. Autonomous Navigation:**
 
-    cd ~/robocity_cuadruped_robot/robocity/base && python3 navigation.py
+    cd ~/robocity_cuadruped_robot/base && python3 navigation.py
 
 ---
 
@@ -82,29 +82,29 @@ For the reinforcement learning section, run the following scripts depending on t
 
 * **Case 1 - Environment:**
 
-    cd ~/robocity_cuadruped_robot/robocity/scripts/caso_1_entorno && python3 inicio.py 
+    cd ~/robocity_cuadruped_robot/scripts/caso_1_entorno && python3 inicio.py 
 
 * **Case 2 - Failures (Falling Forward & Vibration):**
 
   * *Training 1:*
 
-        cd ~/robocity_cuadruped_robot/robocity/scripts/caso_2_fallos/cae_adelante && python3 entrenamiento.py
+        cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && python3 entrenamiento.py
 
   * *Training Evolution (TensorBoard):*
 
-        cd ~/robocity_cuadruped_robot/robocity/scripts/caso_2_fallos/cae_adelante && tensorboard --logdir ./logs/
+        cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && tensorboard --logdir ./logs/
 
   * *Inference (1 Million Epoch Model):*
 
-        cd ~/robocity_cuadruped_robot/robocity/scripts/caso_2_fallos/cae_adelante && python3 cae_adelante.py
+        cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/cae_adelante && python3 cae_adelante.py
 
   * *Inference (Vibration Model):*
 
-        cd ~/robocity_cuadruped_robot/robocity/scripts/caso_2_fallos/vibracion && python3 vibracion.py
+        cd ~/robocity_cuadruped_robot/scripts/caso_2_fallos/vibracion && python3 vibracion.py
 
 * **Case 3 - Mobility (Terrains and Refinement):**
 
-    cd ~/robocity_cuadruped_robot/robocity/scripts/caso_3_movilidad && python3 inferencia.py
+    cd ~/robocity_cuadruped_robot/scripts/caso_3_movilidad && python3 inferencia.py
 
   > **Note:** You can try changing the scene to "scene_irregular.xml" or changing the robot type to "anybotics_anymal_c" inside the script.
 
@@ -112,11 +112,11 @@ For the reinforcement learning section, run the following scripts depending on t
 
   * *Training and Inference:*
 
-        cd ~/robocity_cuadruped_robot/robocity/scripts/caso_4_robustez && python3 train_inference.py
+        cd ~/robocity_cuadruped_robot/scripts/caso_4_robustez && python3 train_inference.py
 
   * *Continue Training:*
 
-        cd ~/robocity_cuadruped_robot/robocity/scripts/caso_4_robustez && python3 continuar_entrenamiento.py
+        cd ~/robocity_cuadruped_robot/scripts/caso_4_robustez && python3 continuar_entrenamiento.py
 
 ---
 
