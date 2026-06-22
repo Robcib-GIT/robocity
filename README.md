@@ -42,8 +42,8 @@ Install the required libraries for Reinforcement Learning and Simulation:
 ### 6. Download the Course Repositories
 Navigate to your workspace, download the course files, and the MuJoCo Menagerie models:
 
+    git clone https://github.com/Robcib-GIT/robocity.git robocity_cuadruped_robot
     cd ~/robocity_cuadruped_robot
-    git clone https://github.com/Robcib-GIT/robocity.git
     git clone https://github.com/google-deepmind/mujoco_menagerie.git
 
 *(Note: Remember to replace the unitree_go2 folder inside mujoco_menagerie with the modified one provided in the course repository).*
