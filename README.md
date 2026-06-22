@@ -10,8 +10,8 @@ Open a terminal in Ubuntu and run the following commands:
 
 1. Clone this repository to your computer:
 ```bash
-git clone https://github.com/Robcib-GIT/robocity.git
-cd robocity
+git clone [https://github.com/Robcib-GIT/robocity.git](https://github.com/Robcib-GIT/robocity.git) robocity_cuadruped_robot
+cd robocity_cuadruped_robot
 ```
 
 2. Grant execution permissions to the script and run it:
