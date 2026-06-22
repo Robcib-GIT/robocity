@@ -10,7 +10,7 @@ Open a terminal in Ubuntu and run the following commands:
 
 1. Clone this repository to your computer:
 
-    git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
+    git clone [[https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git]([https://github.com/Robcib-GIT/robocity/tree/main](https://github.com/Robcib-GIT/robocity/tree/main))]([https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/Robcib-GIT/robocity/tree/main))
     cd YOUR_REPO_NAME
 
 2. Grant execution permissions to the script and run it:
