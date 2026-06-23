@@ -120,22 +120,6 @@ For the reinforcement learning section, run the following scripts depending on t
 
 ---
 
-## ⚠️ Potential Environment Errors
-
-**1. Mamba not found during ROS installation:**
-If the terminal throws a "command not found" error for Mamba (or suggests installing `samba` instead), you can bypass it by forcing Conda to run Mamba directly from the base environment. Use this command instead of the standard ROS installation command:
-
-    conda run -n base mamba install -n robocity_cuadruped_robot ros-humble-ros-base ros-humble-sensor-msgs ros-humble-geometry-msgs ros-humble-tf2-ros ros-humble-rviz2 ros-humble-teleop-twist-keyboard typeguard -y
-
-**2. ROS path conflicts or .bashrc issues:**
-If you experience issues with your ROS paths, run the following cleanup commands in your terminal:
-
-    source $CONDA_PREFIX/setup.bash
-    unset PYTHONPATH
-    unset AMENT_PREFIX_PATH
-    unset CMAKE_PREFIX_PATH
-    unset ROS_PACKAGE_PATH
-    unset LD_LIBRARY_PATH
 
 ## 🛠️ Manual Installation (macOS)
 
@@ -204,3 +188,21 @@ Once activated, you can run the different course nodes in separate tabs. For exa
 
     cd ~/robocity_cuadruped_robot/base
     mjpython inicio_ros.py
+
+
+## ⚠️ Potential Environment Errors
+
+**1. Mamba not found during ROS installation:**
+If the terminal throws a "command not found" error for Mamba (or suggests installing `samba` instead), you can bypass it by forcing Conda to run Mamba directly from the base environment. Use this command instead of the standard ROS installation command:
+
+    conda run -n base mamba install -n robocity_cuadruped_robot ros-humble-ros-base ros-humble-sensor-msgs ros-humble-geometry-msgs ros-humble-tf2-ros ros-humble-rviz2 ros-humble-teleop-twist-keyboard typeguard -y
+
+**2. ROS path conflicts or .bashrc issues:**
+If you experience issues with your ROS paths, run the following cleanup commands in your terminal:
+
+    source $CONDA_PREFIX/setup.bash
+    unset PYTHONPATH
+    unset AMENT_PREFIX_PATH
+    unset CMAKE_PREFIX_PATH
+    unset ROS_PACKAGE_PATH
+    unset LD_LIBRARY_PATH
