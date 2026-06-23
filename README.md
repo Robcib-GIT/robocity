@@ -82,7 +82,7 @@ For the reinforcement learning section, run the following scripts depending on t
 
 * **Case 1 - Environment:**
 
-    cd ~/robocity_cuadruped_robot/scripts/caso_1_entorno && python3 inicio.py 
+        cd ~/robocity_cuadruped_robot/scripts/caso_1_entorno && python3 inicio.py 
 
 * **Case 2 - Failures (Falling Forward & Vibration):**
 
