@@ -1,10 +1,9 @@
 
 **************************************
-***** LANZAMIENTO DE CODIGOS BASE *********
+***** Launch base codes *********
 **************************************
-// copiar la carpeta scripts_cuadrupedos_muar
-// reemplazar la carpeta "unitree_go2" dentro de mujoco_menagerie
-- Lanzamiento de entorno:
+// replace "unitree_go2" in mujoco_menagerie
+- launch env:
 
 1 ****
 cd ~/robocity_cuadruped_robot/base && python3 inicio_ros.py 
