@@ -2,6 +2,8 @@
 
 Welcome to the course repository! Here you will find all the necessary scripts, models, and tools to simulate and control quadruped robots using ROS 2 (Humble), MuJoCo, and Reinforcement Learning.
 
+<img width="823" height="340" alt="escenario" src="https://github.com/user-attachments/assets/d47ff6fc-3637-4247-a518-9b0ce1e9e557" />
+
 ## 🛠️ Manual Installation
 
 Please open a terminal in Ubuntu and strictly follow these steps one by one to set up your environment.
