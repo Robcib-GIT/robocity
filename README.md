@@ -1,4 +1,4 @@
-# Robocity SummerSchool - Quadruped Robots Environment and RL
+# Quadruped Robots Environment and R.Learning
 
 Welcome to the course repository! Here you will find all the necessary scripts, models, and tools to simulate and control quadruped robots using ROS 2 (Humble), MuJoCo, and Reinforcement Learning.
 
